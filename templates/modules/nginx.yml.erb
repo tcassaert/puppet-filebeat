@@ -1,0 +1,26 @@
+- module: <%= @module %>
+  # Access logs
+  access:
+    enabled: <%= @nginx_access_enabled %>
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    <%- if @nginx_access_paths.length > 0 -%>
+    var.paths:
+    <%- @nginx_access_paths.each do |log_path| -%>
+      - "<%= log_path %>"
+    <%- end -%>
+    <%- end -%>
+
+  # Error logs
+  error:
+    enabled: <%= @nginx_error_enabled %>
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    <%- if @nginx_error_paths.length > 0 -%>
+    var.paths:
+    <%- @nginx_error_paths.each do |log_path| -%>
+      - "<%= log_path %>"
+    <%- end -%>
+    <%- end -%>

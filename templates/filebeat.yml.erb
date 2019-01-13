@@ -1,0 +1,70 @@
+# This file is managed by Puppet, do not edit
+
+######################## Filebeat Configuration ############################
+#================================ General =====================================
+name: <%= @shipper_name %>
+
+#================================= Paths ======================================
+path.home: <%= @home_path %>
+<% if @config_path != nil -%>
+path.config: <%= @config_path %>
+<%- else -%>
+path.config: ${path.home}
+<%- end -%>
+<% if @data_path != nil -%>
+path.data: <%= @data_path %>
+<%- else -%>
+path.data: ${path.home}/data
+<%- end -%>
+<% if @log_path != nil -%>
+path.logs: <%= @log_path %>
+<%- else -%>
+path.logs: '/var/log/filebeat'
+<%- end -%>
+
+
+#========================= Filebeat global options ============================
+
+<% if @registry_file != nil -%>
+filebeat.registry_file: <%= @registry_file %>
+<%- else -%>
+filebeat.registry_file: ${path.data}/registry
+<%- end -%>
+
+<% if @inputs_location != nil and @modules_location != nil -%>
+filebeat.config:
+  inputs:
+    enabled: true
+    path: <%= @inputs_location %>/*.yml
+    reload.enabled: <%= @config_reload %>
+  modules:
+    enabled: true
+    path: <%= @modules_location %>/*.yml
+    reload.enabled: <%= @config_reload %>
+<%- elsif @inputs_location and not @modules_location -%>
+filebeat.config:
+  inputs:
+    enabled: true
+    path: <%= @inputs_location %>/*.yml
+    reload.enabled: <%= @config_reload %>
+<%- elsif not @inputs_location and @modules_location -%>
+filebeat.config:
+  modules:
+    enabled: true
+    path: <%= @modules_location %>/*.yml
+    reload.enabled: <%= @config_reload %>
+<%- end -%>
+
+#================================ Outputs ======================================
+<% if @logstash_hosts != nil -%>
+#----------------------------- Logstash output ---------------------------------
+output.logstash:
+  enabled: true
+  hosts: <%= @logstash_hosts %>
+<%- end -%>
+<% if @elasticsearch_hosts != nil -%>
+#-------------------------- Elasticsearch output -------------------------------
+output.elasticsearch:
+  enabled: true
+  hosts: <%= @elasticsearch_hosts %>
+<%- end -%>

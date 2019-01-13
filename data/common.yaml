@@ -1,0 +1,14 @@
+---
+filebeat::config_dir: '/etc/filebeat'
+filebeat::config_reload: true
+filebeat::ensure: 'present'
+filebeat::home_path: '/var/lib/filebeat'
+filebeat::logstash_hosts:
+  - 'logstash01.vito:5044'
+  - 'logstash02.vito:5044'
+filebeat::manage_repo: true
+filebeat::modules_location: '/etc/filebeat/modules.d'
+filebeat::service_ensure: 'enabled'
+filebeat::shipper_name: '%{::fqdn}'
+filebeat::validate_config: true
+filebeat::validate_cmd: '/bin/filebeat test config'
