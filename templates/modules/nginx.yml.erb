@@ -24,3 +24,7 @@
       - "<%= log_path %>"
     <%- end -%>
     <%- end -%>
+
+<%- if @nginx_config_hash != nil -%>
+<%= @nginx_config_hash.to_yaml[4...-1] %>
+<%- end -%>

@@ -27,5 +27,8 @@
     var.paths:
     <%- @apache2_error_paths.each do |log_path| -%>
       - "<%= log_path %>"
-    <%- end -%>
+    <%- end %>
+<%- if @apache2_config_hash != nil -%>
+<%= @apache2_config_hash.to_yaml[4...-1] %>
+<%- end -%>
     <%- end -%>
