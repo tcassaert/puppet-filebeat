@@ -61,6 +61,7 @@ filebeat.config:
 output.logstash:
   enabled: true
   hosts: <%= @logstash_hosts %>
+  loadbalance: <%= @logstash_loadbalance %>
 <%- end -%>
 <% if @elasticsearch_hosts != nil -%>
 #-------------------------- Elasticsearch output -------------------------------
