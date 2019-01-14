@@ -24,5 +24,6 @@ class filebeat::config (
   file { "${config_dir}/filebeat.yml":
     ensure  => 'present',
     content => template('filebeat/filebeat.yml.erb'),
+    notify  => Service['filebeat'],
   }
 }
