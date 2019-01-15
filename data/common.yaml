@@ -3,6 +3,7 @@ filebeat::config_dir: '/etc/filebeat'
 filebeat::config_reload: true
 filebeat::ensure: 'present'
 filebeat::home_path: '/var/lib/filebeat'
+filebeat::inputs_location: '/etc/filebeat/inputs.d'
 filebeat::logstash_loadbalance: true
 filebeat::manage_repo: true
 filebeat::modules_location: '/etc/filebeat/modules.d'
