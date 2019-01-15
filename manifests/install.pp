@@ -24,6 +24,7 @@ class filebeat::install (
   }
 
   package { 'filebeat':
-    ensure => $ensure,
+    ensure  => $ensure,
+    require => Yumrepo['elastic'],
   }
 }
