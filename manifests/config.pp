@@ -20,12 +20,14 @@ class filebeat::config (
 ){
 
   file { $home_path:
-    ensure => 'directory',
+    ensure  => 'directory',
+    require => Package['filebeat'],
   }
 
   file { "${config_dir}/filebeat.yml":
     ensure  => 'present',
     content => template('filebeat/filebeat.yml.erb'),
     notify  => Service['filebeat'],
+    require => Package['filebeat'],
   }
 }
