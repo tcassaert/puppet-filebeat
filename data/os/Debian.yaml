@@ -1,0 +1,2 @@
+---
+filebeat::repo_url: 'https://artifacts.elastic.co/packages/6.x/apt'
