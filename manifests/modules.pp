@@ -36,12 +36,14 @@ define filebeat::modules(
       content => template("${module_name}/modules/${module}.yml.erb"),
       mode    => '0644',
       notify  => Service['filebeat'],
+      require => Package['filebeat'],
     }
 
   } else {
     file { "${filebeat_module_dir}/${module}.yml":
-      ensure => 'absent',
-      notify => Service['filebeat'],
+      ensure  => 'absent',
+      notify  => Service['filebeat'],
+      require => Package['filebeat'],
     }
   }
 }
