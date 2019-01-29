@@ -18,7 +18,8 @@ define filebeat::inputs(
 
   if ! defined(File[$filebeat_inputs_dir]) {
     file { $filebeat_inputs_dir:
-      ensure => 'directory',
+      ensure  => 'directory',
+      require => Package['filebeat'],
     }
   }
 
@@ -27,5 +28,6 @@ define filebeat::inputs(
     content => template("${module_name}/inputs.yml.erb"),
     mode    => '0644',
     notify  => Service['filebeat'],
+    require => Package['filebeat'],
   }
 }
