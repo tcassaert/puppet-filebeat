@@ -9,7 +9,7 @@
 class filebeat::config (
   $config_dir           = $::filebeat::config_dir,
   $config_reload        = $::filebeat::config_reload,
-  $elasticsearch_hosts  = $::filebeat::elasticsearch::hosts,
+  $elasticsearch_hosts  = $::filebeat::elasticsearch_hosts,
   $inputs               = $::filebeat::inputs,
   $inputs_location      = $::filebeat::inputs_location,
   $home_path            = $::filebeat::home_path,
@@ -29,5 +29,13 @@ class filebeat::config (
     content => template('filebeat/filebeat.yml.erb'),
     notify  => Service['filebeat'],
     require => Package['filebeat'],
+  }
+
+  file { $filebeat_inputs_location:
+    ensure  => 'directory',
+    purge   => true,
+    recurse => true,
+    require => Package['filebeat'],
+    notify  => Service['filebeat'],
   }
 }

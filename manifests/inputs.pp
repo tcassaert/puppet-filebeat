@@ -8,7 +8,6 @@
 #   filebeat::inputs { 'namevar': }
 define filebeat::inputs(
   String $input_type,
-  String $filebeat_inputs_dir = '/etc/filebeat/inputs.d',
   Hash   $config              = {},
 ) {
 
@@ -16,12 +15,6 @@ define filebeat::inputs(
       fail('You must include the filebeat base class before using any filebeat defined resources')
   }
 
-  if ! defined(File[$filebeat_inputs_dir]) {
-    file { $filebeat_inputs_dir:
-      ensure  => 'directory',
-      require => Package['filebeat'],
-    }
-  }
 
   file { "${filebeat_inputs_dir}/${title}.yml":
     ensure  => 'present',
