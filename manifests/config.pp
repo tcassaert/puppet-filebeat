@@ -31,7 +31,7 @@ class filebeat::config (
     require => Package['filebeat'],
   }
 
-  file { $filebeat_inputs_location:
+  file { $inputs_location:
     ensure  => 'directory',
     purge   => true,
     recurse => true,
