@@ -32,6 +32,7 @@ class filebeat::install (
         package { 'filebeat':
           ensure  => $ensure,
           require => Apt::Source['elastic'],
+          notify  => Service['filebeat'],
         }
       }
       'RedHat': {
@@ -48,13 +49,15 @@ class filebeat::install (
         package { 'filebeat':
           ensure  => $ensure,
           require => Yumrepo['elastic'],
+          notify  => Service['filebeat'],
         }
       }
     }
   }
   else {
-    package { 'filebeat': 
+    package { 'filebeat':
       ensure => $ensure,
+      notify => Service['filebeat'],
     }
-  }   
+  }
 }
