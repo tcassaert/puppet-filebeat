@@ -12,11 +12,11 @@ define filebeat::modules(
   String                    $module                 = $title,
 
   # Apache2 module variables
-  Boolean                   $apache2_access_enabled = true,
-  Array[String]             $apache2_access_paths   = [],
-  Optional[Hash]            $apache2_config_hash    = undef,
-  Boolean                   $apache2_error_enabled  = true,
-  Array[String]             $apache2_error_paths    = [],
+  Boolean                   $apache_access_enabled = true,
+  Array[String]             $apache_access_paths   = [],
+  Optional[Hash]            $apache_config_hash    = undef,
+  Boolean                   $apache_error_enabled  = true,
+  Array[String]             $apache_error_paths    = [],
 
   # Nginx module variables
   Boolean                   $nginx_access_enabled   = true,
@@ -27,13 +27,19 @@ define filebeat::modules(
 ) {
 
   if ! defined(Class['filebeat']) {
-      fail('You must include the filebeat base class before using any filebeat defined resources')
+    fail('You must include the filebeat base class before using any filebeat defined resources')
+  }
+
+  if ($module = 'apache2') {
+    $_module = 'apache'
+  } else {
+    $_module = $module
   }
 
   if $enabled {
     file { "${filebeat_module_dir}/${module}.yml":
       ensure  => 'present',
-      content => template("${module_name}/modules/${module}.yml.erb"),
+      content => template("${module_name}/modules/${_module}.yml.erb"),
       mode    => '0644',
       notify  => Service['filebeat'],
       require => Package['filebeat'],
