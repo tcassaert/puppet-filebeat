@@ -25,10 +25,18 @@ path.logs: '/var/log/filebeat'
 
 #========================= Filebeat global options ============================
 
+<% if /^7/.match(@ensure) -%>
+<% if @registry_file != nil -%>
+filebeat.registry.file: <%= @registry_file %>
+<%- else -%>
+filebeat.registry.file: ${path.data}/registry
+<%- end -%>
+<%- else -%>
 <% if @registry_file != nil -%>
 filebeat.registry_file: <%= @registry_file %>
 <%- else -%>
 filebeat.registry_file: ${path.data}/registry
+<%- end -%>
 <%- end -%>
 
 <% if @inputs_location != nil and @modules_location != nil -%>
