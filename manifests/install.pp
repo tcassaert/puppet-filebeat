@@ -12,6 +12,12 @@ class filebeat::install (
   $repo_url    = $::filebeat::repo_url,
 ){
   if $manage_repo {
+    $major_version = $ensure ? {
+      /^6/    => '6',
+      /^7/    => '7',
+      default => '6',
+    }
+
     case $::osfamily {
       'Debian': {
         Class['apt::update'] -> Package['filebeat']
@@ -19,7 +25,7 @@ class filebeat::install (
         if !defined(Apt::Source['elastic']){
           apt::source { 'elastic':
             ensure   => 'present',
-            location => $repo_url,
+            location => "https://artifacts.elastic.co/packages/${major_version}.x/apt",
             release  => 'stable',
             repos    => 'main',
             key      => {
@@ -40,7 +46,7 @@ class filebeat::install (
           yumrepo { 'elastic':
             descr    => 'Repository for Elastic rpms',
             enabled  => 1,
-            baseurl  => $repo_url,
+            baseurl  => "https://artifacts.elastic.co/packages/${major_version}.x/yum",
             gpgcheck => '1',
             gpgkey   => 'https://artifacts.elastic.co/GPG-KEY-elasticsearch',
           }
