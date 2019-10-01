@@ -9,7 +9,6 @@
 class filebeat::install (
   $ensure      = $::filebeat::ensure,
   $manage_repo = $::filebeat::manage_repo,
-  $repo_url    = $::filebeat::repo_url,
 ){
   if $manage_repo {
     $major_version = $ensure ? {
