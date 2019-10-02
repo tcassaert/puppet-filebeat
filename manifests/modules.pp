@@ -26,12 +26,14 @@ define filebeat::modules(
   Array[String]             $nginx_error_paths      = [],
 ) {
 
-  if ! defined(Class['filebeat']) {
-    fail('You must include the filebeat base class before using any filebeat defined resources')
-  }
+  include ::filebeat
 
-  if ($module = 'apache2') {
-    $_module = 'apache'
+  if ( $::filebeat::ensure =~ /^6/ ) {
+    if ($module == 'apache2') {
+      $_module = 'apache'
+    } else {
+      $_module = $module
+    }
   } else {
     $_module = $module
   }
