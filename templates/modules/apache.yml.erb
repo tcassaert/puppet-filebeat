@@ -1,8 +1,8 @@
 - module: <%= @module %>
   # Access logs
   access:
-    <%- if @apache2_access_enabled -%>
-    enabled: <%= @apache2_access_enabled %>
+    <%- if @apache_access_enabled -%>
+    enabled: <%= @apache_access_enabled %>
     <%- else -%>
     enabled: false
     <%- end -%>
@@ -10,25 +10,25 @@
 
     # Set custom paths for the log files. If left empty,
     # Filebeat will choose the paths depending on your OS.
-    <%- if @apache2_access_paths.length > 0 -%>
+    <%- if @apache_access_paths.length > 0 -%>
     var.paths:
-    <%- @apache2_access_paths.each do |log_path| -%>
+    <%- @apache_access_paths.each do |log_path| -%>
       - "<%= log_path %>"
     <%- end -%>
     <%- end -%>
 
   # Error logs
   error:
-    enabled: <%= @apache2_error_enabled %>
+    enabled: <%= @apache_error_enabled %>
 
     # Set custom paths for the log files. If left empty,
     # Filebeat will choose the paths depending on your OS.
-    <%- if @apache2_error_paths.length > 0 -%>
+    <%- if @apache_error_paths.length > 0 -%>
     var.paths:
-    <%- @apache2_error_paths.each do |log_path| -%>
+    <%- @apache_error_paths.each do |log_path| -%>
       - "<%= log_path %>"
     <%- end %>
-<%- if @apache2_config_hash != nil -%>
-<%= @apache2_config_hash.to_yaml[4...-1] %>
+<%- if @apache_config_hash != nil -%>
+<%= @apache_config_hash.to_yaml[4...-1] %>
 <%- end -%>
     <%- end -%>

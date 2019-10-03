@@ -13,7 +13,7 @@ class filebeat::service (
   $validate_config = $::filebeat::validate_config,
 ){
 
-  if $ensure == 'present' or $ensure =~ /6.*/ {
+  if $ensure == 'present' or $ensure =~ /^[0-9]/ {
     case $service_ensure {
       'enabled': {
         $_service_ensure = 'running'

@@ -17,7 +17,6 @@ class filebeat (
   Boolean                                    $logstash_loadbalance = $logstash_loadbalance,
   Boolean                                    $manage_repo          = $manage_repo,
   Optional[String]                           $modules_location     = $modules_location,
-  String                                     $repo_url             = $repo_url,
   Enum['enabled', 'disabled', 'running']     $service_ensure       = $service_ensure,
   String                                     $shipper_name         = $shipper_name,
   Boolean                                    $validate_config      = $validate_config,

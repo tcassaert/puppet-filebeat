@@ -10,6 +10,7 @@ class filebeat::config (
   $config_dir           = $::filebeat::config_dir,
   $config_reload        = $::filebeat::config_reload,
   $elasticsearch_hosts  = $::filebeat::elasticsearch_hosts,
+  $ensure               = $::filebeat::ensure,
   $inputs               = $::filebeat::inputs,
   $inputs_location      = $::filebeat::inputs_location,
   $home_path            = $::filebeat::home_path,
