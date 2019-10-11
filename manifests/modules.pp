@@ -10,6 +10,7 @@ define filebeat::modules(
   Boolean                   $enabled                = true,
   String                    $filebeat_module_dir    = '/etc/filebeat/modules.d',
   String                    $module                 = $title,
+  Optional[Array[String]]   $tags                   = undef,
 
   # Apache2 module variables
   Boolean                   $apache_access_enabled = true,

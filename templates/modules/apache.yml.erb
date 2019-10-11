@@ -16,6 +16,13 @@
       - "<%= log_path %>"
     <%- end -%>
     <%- end -%>
+    <%- if @tags.length > 0 -%>
+    input:
+      tags:
+      <%- @tags.each do |tag| -%>
+        - "<%= tag %>"
+      <%- end -%>
+    <%- end -%>
 
   # Error logs
   error:
@@ -28,6 +35,13 @@
     <%- @apache_error_paths.each do |log_path| -%>
       - "<%= log_path %>"
     <%- end %>
+    <%- if @tags.length > 0 -%>
+    input:
+      tags:
+      <%- @tags.each do |tag| -%>
+        - "<%= tag %>"
+      <%- end -%>
+    <%- end -%>
 <%- if @apache_config_hash != nil -%>
 <%= @apache_config_hash.to_yaml[4...-1] %>
 <%- end -%>
