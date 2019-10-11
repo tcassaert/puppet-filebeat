@@ -11,7 +11,7 @@
       - "<%= log_path %>"
     <%- end -%>
     <%- end -%>
-    <%- if @tags.length > 0 -%>
+    <%- if @tags != nil -%>
     input:
       tags:
       <%- @tags.each do |tag| -%>
@@ -29,15 +29,14 @@
     var.paths:
     <%- @nginx_error_paths.each do |log_path| -%>
       - "<%= log_path %>"
-    <%- end -%>
-    <%- if @tags.length > 0 -%>
+    <%- end %>
+    <%- if @tags != nil -%>
     input:
       tags:
       <%- @tags.each do |tag| -%>
         - "<%= tag %>"
       <%- end -%>
     <%- end -%>
-
 <%- if @nginx_config_hash != nil -%>
 <%= @nginx_config_hash.to_yaml[4...-1] %>
 <%- end -%>

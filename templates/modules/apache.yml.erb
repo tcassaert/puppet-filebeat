@@ -11,7 +11,7 @@
       - "<%= log_path %>"
     <%- end -%>
     <%- end -%>
-    <%- if @tags.length > 0 -%>
+    <%- if @tags != nil -%>
     input:
       tags:
       <%- @tags.each do |tag| -%>
@@ -30,7 +30,7 @@
     <%- @apache_error_paths.each do |log_path| -%>
       - "<%= log_path %>"
     <%- end %>
-    <%- if @tags.length > 0 -%>
+    <%- if @tags != nil -%>
     input:
       tags:
       <%- @tags.each do |tag| -%>
