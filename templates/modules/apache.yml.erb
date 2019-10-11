@@ -1,12 +1,7 @@
 - module: <%= @module %>
   # Access logs
   access:
-    <%- if @apache_access_enabled -%>
     enabled: <%= @apache_access_enabled %>
-    <%- else -%>
-    enabled: false
-    <%- end -%>
-
 
     # Set custom paths for the log files. If left empty,
     # Filebeat will choose the paths depending on your OS.
