@@ -11,7 +11,6 @@ class filebeat::config (
   $config_reload        = $::filebeat::config_reload,
   $elasticsearch_hosts  = $::filebeat::elasticsearch_hosts,
   $ensure               = $::filebeat::ensure,
-  $inputs               = $::filebeat::inputs,
   $inputs_location      = $::filebeat::inputs_location,
   $home_path            = $::filebeat::home_path,
   $logstash_hosts       = $::filebeat::logstash_hosts,
