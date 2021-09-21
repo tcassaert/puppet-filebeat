@@ -67,7 +67,7 @@ filebeat.config:
 # ============================= Autodiscovery ==================================
 filebeat.autodiscovery:
   providers:
-    <%= @autodiscovery.to_yaml.gsub("---\n", '').gsub(/^/, "    ") %>
+<%= @autodiscovery.to_yaml.gsub("---\n", '').gsub(/^/, "  ") %>
 <%- end -%>
 
 #================================ Outputs ======================================
