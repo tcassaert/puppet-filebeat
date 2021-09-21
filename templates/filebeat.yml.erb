@@ -63,6 +63,13 @@ filebeat.config:
     reload.enabled: <%= @config_reload %>
 <%- end -%>
 
+<% if @autodiscovery != nil -%>
+# ============================= Autodiscovery ==================================
+filebeat.autodiscovery:
+  providers:
+    <%= @autodiscovery.to_yaml.gsub("---\n", '').gsub(/^/, "    ") %>
+<%- end -%>
+
 #================================ Outputs ======================================
 <% if @logstash_hosts != nil -%>
 #----------------------------- Logstash output ---------------------------------

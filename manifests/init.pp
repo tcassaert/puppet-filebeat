@@ -7,6 +7,7 @@
 # @example
 #   include filebeat
 class filebeat (
+  Optional[Array[Hash]]                      $autodiscovery        = undef,
   String                                     $config_dir           = $config_dir,
   Boolean                                    $config_reload        = $config_reload,
   Optional[Array[String]]                    $elasticsearch_hosts  = undef,

@@ -7,6 +7,7 @@
 # @example
 #   include filebeat::config
 class filebeat::config (
+  $autodiscovery        = $::filebeat::autodiscovery,
   $config_dir           = $::filebeat::config_dir,
   $config_reload        = $::filebeat::config_reload,
   $elasticsearch_hosts  = $::filebeat::elasticsearch_hosts,
