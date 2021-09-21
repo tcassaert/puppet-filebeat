@@ -65,7 +65,7 @@ filebeat.config:
 
 <% if @autodiscovery != nil -%>
 # ============================= Autodiscovery ==================================
-filebeat.autodiscovery:
+filebeat.autodiscover:
   providers:
 <%= @autodiscovery.to_yaml.gsub("---\n", '').gsub(/^/, "  ").gsub(/\\\\/, "\\").gsub(/\"/, "'") %>
 <%- end -%>
