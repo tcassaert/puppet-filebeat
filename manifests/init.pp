@@ -16,6 +16,8 @@ class filebeat (
   String                                     $home_path            = $home_path,
   Optional[Array[String]]                    $logstash_hosts       = undef,
   Boolean                                    $logstash_loadbalance = $logstash_loadbalance,
+  Optional[String]                           $logstash_ttl         = undef,
+  Optional[Integer]                          $logstash_pipelining  = undef,
   Boolean                                    $manage_repo          = $manage_repo,
   Optional[String]                           $modules_location     = $modules_location,
   Enum['enabled', 'disabled', 'running']     $service_ensure       = $service_ensure,

@@ -7,17 +7,19 @@
 # @example
 #   include filebeat::config
 class filebeat::config (
-  $autodiscovery        = $::filebeat::autodiscovery,
-  $config_dir           = $::filebeat::config_dir,
-  $config_reload        = $::filebeat::config_reload,
-  $elasticsearch_hosts  = $::filebeat::elasticsearch_hosts,
-  $ensure               = $::filebeat::ensure,
-  $inputs_location      = $::filebeat::inputs_location,
-  $home_path            = $::filebeat::home_path,
-  $logstash_hosts       = $::filebeat::logstash_hosts,
-  $logstash_loadbalance = $::filebeat::logstash_loadbalance,
-  $modules_location     = $::filebeat::modules_location,
-  $shipper_name         = $::filebeat::shipper_name,
+  $autodiscovery            = $::filebeat::autodiscovery,
+  $config_dir               = $::filebeat::config_dir,
+  $config_reload            = $::filebeat::config_reload,
+  $elasticsearch_hosts      = $::filebeat::elasticsearch_hosts,
+  $elasticsearch_ttl        = $::filebeat::elasticsearch_ttl,
+  $elasticsearch_pipelining = $::filebeat::elasticsearch_pipelining,
+  $ensure                   = $::filebeat::ensure,
+  $inputs_location          = $::filebeat::inputs_location,
+  $home_path                = $::filebeat::home_path,
+  $logstash_hosts           = $::filebeat::logstash_hosts,
+  $logstash_loadbalance     = $::filebeat::logstash_loadbalance,
+  $modules_location         = $::filebeat::modules_location,
+  $shipper_name             = $::filebeat::shipper_name,
 ){
 
   file { $home_path:

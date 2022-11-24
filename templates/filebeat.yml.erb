@@ -77,10 +77,22 @@ output.logstash:
   enabled: true
   hosts: <%= @logstash_hosts %>
   loadbalance: <%= @logstash_loadbalance %>
+  <% if @elasticsearch_ttl != nil -%>
+  ttl: <%= @logstash_ttl %>
+  <%- end -%>
+  <% if @elasticsearch_pipelining != nil -%>
+  pipelining: <%= @logstash_pipelining %>
+  <%- end -%>
 <%- end -%>
 <% if @elasticsearch_hosts != nil -%>
 #-------------------------- Elasticsearch output -------------------------------
 output.elasticsearch:
   enabled: true
   hosts: <%= @elasticsearch_hosts %>
+  <% if @elasticsearch_ttl != nil -%>
+  ttl: <%= @logstash_ttl %>
+  <%- end -%>
+  <% if @elasticsearch_pipelining != nil -%>
+  pipelining: <%= @logstash_pipelining %>
+  <%- end -%>
 <%- end -%>
