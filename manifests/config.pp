@@ -13,6 +13,7 @@ class filebeat::config (
   $elasticsearch_hosts      = $::filebeat::elasticsearch_hosts,
   $ensure                   = $::filebeat::ensure,
   $inputs_location          = $::filebeat::inputs_location,
+  $inputs_purge             = $::filebeat::inputs_purge,
   $home_path                = $::filebeat::home_path,
   $logstash_hosts           = $::filebeat::logstash_hosts,
   $logstash_loadbalance     = $::filebeat::logstash_loadbalance,
@@ -36,7 +37,7 @@ class filebeat::config (
 
   file { $inputs_location:
     ensure  => 'directory',
-    purge   => true,
+    purge   => $inputs_purge,
     recurse => true,
     require => Package['filebeat'],
     notify  => Service['filebeat'],
