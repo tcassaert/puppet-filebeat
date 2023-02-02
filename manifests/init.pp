@@ -13,7 +13,7 @@ class filebeat (
   Optional[Array[String]]                    $elasticsearch_hosts  = undef,
   Variant[String, Enum['present', 'absent']] $ensure               = $ensure,
   Optional[String]                           $inputs_location      = $inputs_location,
-  Optional[Boolean]                          $inputs_location      = $inputs_purge,
+  Optional[Boolean]                          $inputs_purge         = $inputs_purge,
   String                                     $home_path            = $home_path,
   Optional[Array[String]]                    $logstash_hosts       = undef,
   Boolean                                    $logstash_loadbalance = $logstash_loadbalance,
