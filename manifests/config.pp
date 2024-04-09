@@ -15,6 +15,7 @@ class filebeat::config (
   $inputs_location          = $::filebeat::inputs_location,
   $inputs_purge             = $::filebeat::inputs_purge,
   $home_path                = $::filebeat::home_path,
+  $log_path                 = $::filebeat::home_path,
   $logstash_hosts           = $::filebeat::logstash_hosts,
   $logstash_loadbalance     = $::filebeat::logstash_loadbalance,
   $logstash_ttl             = $::filebeat::logstash_ttl,
@@ -24,6 +25,11 @@ class filebeat::config (
 ){
 
   file { $home_path:
+    ensure  => 'directory',
+    require => Package['filebeat'],
+  }
+
+  file { $log_path:
     ensure  => 'directory',
     require => Package['filebeat'],
   }

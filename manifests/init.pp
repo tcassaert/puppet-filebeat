@@ -15,6 +15,7 @@ class filebeat (
   Optional[String]                           $inputs_location      = $inputs_location,
   Optional[Boolean]                          $inputs_purge         = $inputs_purge,
   String                                     $home_path            = $home_path,
+  String                                     $log_path             = $log_path,
   Optional[Array[String]]                    $logstash_hosts       = undef,
   Boolean                                    $logstash_loadbalance = $logstash_loadbalance,
   Optional[String]                           $logstash_ttl         = undef,
