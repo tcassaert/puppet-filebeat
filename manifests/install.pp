@@ -14,6 +14,7 @@ class filebeat::install (
     $major_version = $ensure ? {
       /^6/    => '6',
       /^7/    => '7',
+      /^8/    => '8',
       default => '6',
     }
 

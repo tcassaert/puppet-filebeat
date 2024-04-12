@@ -18,7 +18,10 @@ define filebeat::inputs(
 
   file { "${inputs_location}/${title}.yml":
     ensure  => 'present',
-    content => template("${module_name}/inputs.yml.erb"),
+    content => epp("${module_name}/inputs.yml.epp", {
+      input_type => $input_type,
+      config     => $config,
+    }),
     mode    => '0644',
     notify  => Service['filebeat'],
     require => Package['filebeat'],

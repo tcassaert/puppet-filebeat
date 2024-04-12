@@ -1,0 +1,5 @@
+<% | $input_type, $config | -%>
+- type: <%= $input_type %>
+<% $config.each | $k,$v | { -%>
+  <%= $k %>: <%= stdlib::to_json($v) %>
+<% } -%>
